@@ -1,0 +1,15 @@
+D:\labs\2\laba2\ConsoleApp1\bin\Debug\net6.0\ConsoleApp1.exe
+D:\labs\2\laba2\ConsoleApp1\bin\Debug\net6.0\ConsoleApp1.deps.json
+D:\labs\2\laba2\ConsoleApp1\bin\Debug\net6.0\ConsoleApp1.runtimeconfig.json
+D:\labs\2\laba2\ConsoleApp1\bin\Debug\net6.0\ConsoleApp1.dll
+D:\labs\2\laba2\ConsoleApp1\bin\Debug\net6.0\ConsoleApp1.pdb
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.csproj.AssemblyReference.cache
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.AssemblyInfoInputs.cache
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.AssemblyInfo.cs
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.dll
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\refint\ConsoleApp1.dll
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.pdb
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\ConsoleApp1.genruntimeconfig.cache
+D:\labs\2\laba2\ConsoleApp1\obj\Debug\net6.0\ref\ConsoleApp1.dll
