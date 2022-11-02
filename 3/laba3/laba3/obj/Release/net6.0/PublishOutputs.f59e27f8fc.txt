@@ -1,0 +1,5 @@
+D:\labs\3\laba3\laba3\laba3.exe
+D:\labs\3\laba3\laba3\laba3.dll
+D:\labs\3\laba3\laba3\laba3.deps.json
+D:\labs\3\laba3\laba3\laba3.runtimeconfig.json
+D:\labs\3\laba3\laba3\laba3.pdb
