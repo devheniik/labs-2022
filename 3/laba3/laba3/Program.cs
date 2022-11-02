@@ -1,5 +1,5 @@
 ﻿// VARIANT 9
-
+start_of_pr:
 Console.WriteLine("Selcet task id:");
 start:
 
@@ -106,4 +106,4 @@ start_4:
 
 
 
-    Console.ReadKey();
+goto start_of_pr;
