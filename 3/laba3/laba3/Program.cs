@@ -1,109 +1,99 @@
 ﻿// VARIANT 9
-start_of_pr:
-Console.WriteLine("Selcet task id:");
-start:
+ 
 
-int n;
-if(!int.TryParse(Console.ReadLine(), out n)) {
-    Console.WriteLine("Input corrent task id:");
-    goto start;
-} 
-
-if (n != 1 && n != 2 && n != 3)
+namespace Laba
 {
-    Console.WriteLine("Input corrent task id:");
-    goto start;
-}
+    class Program {   
+        static bool defaultValidate(double x)
+        {
+            return false;
+        }
+        //static double read_double(string varname, Func<bool> validate = (double x) => true)
+        static double read_double(string varname, Func<double, bool> validate) 
+            { 
+                
+                double variable; 
+                Console.WriteLine($"Input {varname}:"); 
+                while (!double.TryParse(Console.ReadLine(), out variable))
+                {
+                    Console.WriteLine($"Input corrent {varname}:");
+                } 
 
-if (n == 1)
-{ 
+                if (validate(variable))
+                {
+                    variable = read_double(varname, validate); 
+                }
 
-    double x;
+                return variable;
+            }
+         
+        static int read_task_number(string varname)
+            {
+                int variable; 
+                Console.WriteLine($"Input {varname}:"); 
+                while (!int.TryParse(Console.ReadLine(), out variable))
+                {
+                    Console.WriteLine($"Input corrent {varname}:");
+                } 
+                if (variable != 1 && variable != 2 && variable != 3)
+                {
+                   variable = read_task_number(varname); 
+                } 
+                return variable;
+            }
 
-    Console.WriteLine("Input x:");
-     
-    while (!double.TryParse(Console.ReadLine(), out x)){
-        Console.WriteLine("Input corrent x:");
-    } 
-     
-    var y = Math.Sqrt(
-            Math.Pow(x, 2) + (5 * x) + 8
-        ); 
+        static void Main(string[] args)
+        {   
+            while(true) {   
+                int n = read_task_number("task number"); 
 
-    Console.WriteLine($"y: {y}");
+                if (n == 1)
+                { 
+                    double x = read_double("x", defaultValidate); 
+                    var y = Math.Sqrt(Math.Pow(x, 2) + (5 * x) + 8);  
+                    Console.WriteLine($"y: {y}");
 
 
-}
-else if (n == 2)
+                }
+                else if (n == 2)
+                { 
+                    double x = read_double("side of the square", defaultValidate);  
+                    Console.WriteLine($"P: {4 * x}, S: {x * x}"); 
+                }
+                else if (n == 3)
+                {
+                    double x = read_double("x", defaultValidate);
+
+                    double b = read_double("b", (e) => e >= x);
+
+                    double c = read_double("c", defaultValidate); 
+
+                    var ch = 2 * x - c;
+                    var zn = Math.Sqrt(Convert.ToDouble( x - b)); 
+                    var abs = x - c;
+
+                    if (abs < 0) {
+                        abs = -1 * abs;
+                    }
+                     
+
+                    Console.WriteLine($"y: {ch / zn - abs}");
+
+
+                }
+
+
+
+
+
+                }
+
+
+/*public double input()
 {
 
-    double x;
-
-    Console.WriteLine("Input side of the square:");
-
-    while (!double.TryParse(Console.ReadLine(), out x))
-    {
-        Console.WriteLine("Input corrent side of the square:");
+}*/ 
+        }
     }
 
-    Console.WriteLine($"P: {4 * x}, S: {x * x}");
-
-}
-else if (n == 3)
-{
-    double x;
-    double b;
-    double c;
-
-    start_3: 
-
-    Console.WriteLine("Input x:");
-
-    while (!double.TryParse(Console.ReadLine(), out x))
-    {
-        Console.WriteLine("Input corrent x:");
-    }
-
-    Console.WriteLine("Input b:");
-start_4:
-    while (!double.TryParse(Console.ReadLine(), out b))
-    {
-        
-        Console.WriteLine("Input corrent b:");
-    }
-
-    if (b >= x)
-    {
-        Console.WriteLine("x must be bigger then b, try again:");
-        goto start_4;
-    }
-
-    Console.WriteLine("Input c:");
-
-    while (!double.TryParse(Console.ReadLine(), out c))
-    {
-        Console.WriteLine("Input corrent c:");
-    }
-
-    var ch = 2 * x - c;
-    var zn = Math.Sqrt(Convert.ToDouble( x - b)); 
-    var abs = x - c;
-
-    if (abs < 0) {
-        abs = -1 * abs;
-    }
-
-    if(zn == 0)
-    {
-        Console.WriteLine("(x - b) must be not zero");
-        goto start_3;
-    }
-
-    Console.WriteLine($"y: {ch / zn - abs}");
-
-
-}
-
-
-
-goto start_of_pr;
+ }
