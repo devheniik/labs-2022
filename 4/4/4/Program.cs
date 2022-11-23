@@ -64,18 +64,45 @@ namespace Laba
 
 
         static void Main(string[] args)
-        { 
+        {
+            try
+            {
 
-            do { 
-                ulong n = read_ulong("n", arg => arg < 2); 
-                ulong p = 1; 
-                do { 
-                    Console.WriteLine(getMersenNumber(p)); 
-                    do {
-                        p++;  
-                    } while (!IsPrime(p)); 
-                } while (getMersenNumber(p) <= n); 
-            } while (restart());
+                do
+                {
+                    ulong n = read_ulong("n", arg => arg < 2);
+                    ulong p = 1;
+                    do
+                    {
+                        Console.WriteLine(getMersenNumber(p));
+                        do
+                        {
+                            p++;
+                        } while (!IsPrime(p));
+                    } while (getMersenNumber(p) <= n);
+                } while (restart());
+
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Виключення DivideByZeroException");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Виключення FormatException");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Виключення OverflowException");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Виключення IndexOutOfRangeException");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Виключення: {e.Message}");
+            }
         }
     }
 
