@@ -5,7 +5,7 @@ namespace Laba
 {
     class Program
     {
-        static double read_double(string varname, Func<double, bool> validate = null)
+        static double ReadDouble(string varname, Func<double, bool> validate = null)
         {
 
             double variable;
@@ -17,47 +17,43 @@ namespace Laba
 
             if (validate != null && validate(variable))
             {
-                variable = read_double(varname, validate);
+                variable = ReadDouble(varname, validate);
             }
 
             return variable;
         }
          
 
-        static bool restart()
+        static bool CanRepeat()
         {
 
 
-            Console.WriteLine($"If you want to restart application, write 'yes' [no]");
-            string variable = Console.ReadLine();
+            Console.WriteLine($"If you want to repeat application, write 'yes' [no]");
+            string inputValue = Console.ReadLine();
 
-            if (variable == "yes")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return !string.IsNullOrEmpty(inputValue) && string.Equals(inputValue, "yes", StringComparison.OrdinalIgnoreCase);
         }
 
-        static void decition(double a, double b)
+        static void Decition(double larger_line, double lesser_line)
         {
-            double rest = a;
-            double contains_plus_one = 1;
+            
+
+            Console.WriteLine($"Rest is {larger_line % lesser_line}");
+
+
+            /*
+               double rest = larger_line;
+               double contains_plus_one = 1;
+
             do
             {
-                rest = a - contains_plus_one * b;
+                rest = larger_line - contains_plus_one * lesser_line;
                 contains_plus_one++;
 
-            } while (rest > b);
+            } while (rest > lesser_line);
 
             Console.WriteLine($"A contain b {contains_plus_one - 1} times");
-            Console.WriteLine($"Rest is {rest}");
-            Console.WriteLine($"Another way to find rest {a % b}");
-
-
-            // another way a % b
+            Console.WriteLine($"Another way to find rest {rest}");*/
 
         }
 
@@ -68,33 +64,17 @@ namespace Laba
 
                 do
                 {
-                    double a = read_double("radius larger circle");
-                    double b = read_double("radius lesser circle", e => e >= a);
+                    double larger_line = ReadDouble("larger line size");
+                    double lesser_line = ReadDouble("lesser line size", e => e >= larger_line);
 
-                    decition(a, b);
+                    Decition(larger_line, lesser_line);
 
-                } while (restart());
+                } while (CanRepeat());
 
-            }
-            catch (DivideByZeroException)
-            {
-                Console.WriteLine("Виключення DivideByZeroException");
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Виключення FormatException");
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("Виключення OverflowException");
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine("Виключення IndexOutOfRangeException");
-            }
+            } 
             catch (Exception e)
-            {
-                Console.WriteLine($"Виключення: {e.Message}");
+            { 
+                Console.WriteLine($"\tMessage: {e.Message}"); 
             }
         }
     }

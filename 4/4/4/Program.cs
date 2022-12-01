@@ -14,20 +14,22 @@ namespace Laba
         {
             
 
-            Console.WriteLine($"If you want to restart application, write 'yes' [no]");
-            string variable = Console.ReadLine();
+            Console.WriteLine($"If you want to repeat application, write 'yes' [no]");
+            string input = Console.ReadLine();
 
-            if (variable == "yes") {
+            if (input == "yes") {
                 return true;
             } else {
                 return false;
             }
         }
+
+
         static ulong read_ulong(string varname, Func<ulong, bool> unvalidate = null)
         {
 
             ulong variable;
-            Console.WriteLine($"Input {varname}:");
+            Console.WriteLine($"Input {varname}:");  
             while (!ulong.TryParse(Console.ReadLine(), out variable))
             {
                 Console.WriteLine($"Please input correct value for the {varname}, this variable must be more that 2 and SIMPLE number (not fractional), at last less than 18446744073709551616 so as ulong");
@@ -40,6 +42,8 @@ namespace Laba
 
             return variable;
         }
+
+
         public static bool IsPrime(ulong number)
         {
             if (number <= 1) return false;
@@ -61,13 +65,10 @@ namespace Laba
             return Math.Pow(2, p) - 1;
         }
 
-
-
         static void Main(string[] args)
         {
             try
             {
-
                 do
                 {
                     ulong n = read_ulong("n", arg => arg < 2);
@@ -85,23 +86,23 @@ namespace Laba
             }
             catch (DivideByZeroException)
             {
-                Console.WriteLine("Виключення DivideByZeroException");
+                Console.WriteLine("Exception DivideByZeroException");
             }
             catch (FormatException)
             {
-                Console.WriteLine("Виключення FormatException");
+                Console.WriteLine("Exception FormatException");
             }
             catch (OverflowException)
             {
-                Console.WriteLine("Виключення OverflowException");
+                Console.WriteLine("Exception OverflowException");
             }
             catch (IndexOutOfRangeException)
             {
-                Console.WriteLine("Виключення IndexOutOfRangeException");
+                Console.WriteLine("Exception IndexOutOfRangeException"); 
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Виключення: {e.Message}");
+                Console.WriteLine($"Exception: {e.Message}");
             }
         }
     }

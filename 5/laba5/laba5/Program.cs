@@ -4,87 +4,78 @@
 namespace Laba
 {
     class Program
-    { 
-        static double read_double(string varname, Func<double, bool> validate = null)
+    {
+        static double ReadDouble(string varname, Func<double, bool> unvalidate = null)
         {
 
             double variable;
             Console.WriteLine($"Input {varname}:");
             while (!double.TryParse(Console.ReadLine(), out variable))
             {
-                Console.WriteLine($"Please pnput correct value for the {varname}: ");
+                Console.WriteLine($"Please input correct value for the {varname}: ");
             }
 
-            if (validate != null && validate(variable))
+            if (unvalidate != null && unvalidate(variable))
             {
-                variable = read_double(varname, validate);
+                variable = ReadDouble(varname, validate);
             }
 
             return variable;
         }
 
-        static bool restart()
+        static bool CanRepeat()
         {
 
 
-            Console.WriteLine($"If you want to restart application, write 'yes' [no]");
-            string variable = Console.ReadLine();
+            Console.WriteLine($"If you want to repeat application, write 'yes' [no]");
+            string inputValue = Console.ReadLine();
 
-            if (variable == "yes")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return !string.IsNullOrEmpty(inputValue) && string.Equals(inputValue, "yes", StringComparison.OrdinalIgnoreCase);
         }
 
-        static void decition(double r1, double r2)
+        static void Decision(double radius1, double radius2)
         {
-
-            Console.WriteLine($"Square of larger circle: {Math.PI * Math.Pow(r1, 2)}");
-            Console.WriteLine($"Square of lesser circle: {Math.PI * Math.Pow(r2, 2)}"); 
-            Console.WriteLine($"Square of ring: {Math.PI * Math.Abs(r1 * r1 - r2 * r2)}"); 
+            try
+            {
+                Console.WriteLine($"Square of larger circle: {Math.PI * Math.Pow(radius1, 2)}");
+                Console.WriteLine($"Square of lesser circle: {Math.PI * Math.Pow(radius2, 2)}");
+                Console.WriteLine($"Square of ring: {Math.PI * Math.Abs(radius1 * radius1 - radius2 * radius2)}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Please enter lesser variables, becouse when multiply happen {e.Message}");
+            }
 
         }
 
         static void Main(string[] args)
         {
-            try
+            do
             {
-
-                do
+                //Console.Wri
+                var inputValue = Console.ReadLine();
+                if (!double.TryParse(inputValue, out double radius1)) {
+                    //Incorrect value, please input
+                    continue
+                }
+                //Console.Wri
+                inputValue = Console.ReadLine();
+                if (!double.TryParse(inputValue, out double radius2))
                 {
-                    double r1 = read_double("radiur larger circle");
-                    double r2 = read_double("radiur lesser circle", e => e >= r1);
+                    //Incorrect value, please input
+                    continue
+                }
+                double radius1 = ReadDouble("radiur larger circle");
+                double radius2 = ReadDouble("radiur lesser circle", validatedValue => validatedValue >= radius1);
 
-                    decition(r1, r2);
+                Decision(radius1, radius2);
 
-                } while (restart());
+                bool toRepeat = CanRepeat();
 
-            }
-            catch (DivideByZeroException)
-            {
-                Console.WriteLine("Виключення DivideByZeroException");
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Виключення FormatException");
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("Виключення OverflowException");
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine("Виключення IndexOutOfRangeException");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Виключення: {e.Message}");
-            }
+            } while (toRepeat);
+
         }
     }
+}
 
 }
