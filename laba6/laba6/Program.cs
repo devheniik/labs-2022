@@ -1,6 +1,6 @@
 ﻿// VARIANT 9
 
-
+using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Net.NetworkInformation;
 
@@ -60,7 +60,7 @@ namespace Laba
             }
 
             return variable;
-        }
+        } 
 
         static bool CanRepeat()
         {
@@ -72,6 +72,17 @@ namespace Laba
             return !string.IsNullOrEmpty(inputValue) && string.Equals(inputValue, "yes", StringComparison.OrdinalIgnoreCase);
         }
 
+        static bool isEven(int number)
+        {
+            if (number < 0)
+            {
+                throw new Exception("Zero can not be passed as variable to checking for evening");
+            } else if (number == 1)
+            {
+                return false;
+            }
+            return number % 2 == 0;
+        }
         static void variableSwaiper<T>(ref T e1, ref T e2)
         {
             var temp = e1;
@@ -137,6 +148,58 @@ namespace Laba
             Console.WriteLine(maxSummIndex);
         }
 
+        static int getRand(int min, int max)
+        {
+            Random rnd = new Random();
+            return rnd.Next(min, max + 1);
+        }
+        
+        static int[][] generateTwoDimensionalArray(int passedXAxisSize = 0, int passedYAxisSize = 0, int minElementValue = 10, int maxElementValue = 99)
+        {  
+            if (passedXAxisSize < 1 || passedYAxisSize < 1 || passedXAxisSize > passedYAxisSize)
+            {
+                passedXAxisSize = getRand(1, 20);
+                passedYAxisSize = getRand(passedXAxisSize, passedXAxisSize + 20); 
+            }  
+
+            int[][] responseArray = new int[passedXAxisSize][];
+
+            for(int i = 0; i < passedXAxisSize; i++)
+            {
+                responseArray[i] = new int[passedYAxisSize];
+                for (int j = 0; j < passedYAxisSize; j++)
+                { 
+                    responseArray[i][j] = getRand(minElementValue, maxElementValue);
+                }
+            }
+
+            return responseArray;
+        }
+
+ 
+
+        static void twoDimensionalArrayRepresent<T>(T[][] array)
+        {
+
+
+            Console.WriteLine("-----------------------------");
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                string line = "";
+                for (int j = 0; j < array[i].Length; j++)
+                {
+                    string currentLine = 
+                    line +=   $"{array[i][j]} ";
+                }
+
+                Console.WriteLine(line);
+            }
+
+            Console.WriteLine("-----------------------------");
+
+        }
+
         static void Laba6()
         {
             int arrayBooksSize = ReadInt("Book array size", "more then 0", validatedVariable => validatedVariable <= 0);
@@ -156,13 +219,66 @@ namespace Laba
             selectBiggerLine(arrayBooks, lineSize);
 
         }
-         
+
+        static void Laba71()
+        {
+            int[][] array = generateTwoDimensionalArray();
+
+            twoDimensionalArrayRepresent(array);
+
+            int summOfMaxArrayLine = 0; 
+            foreach (int[] row in array)
+            {
+                int rowSumm = row.Sum();
+
+                if (rowSumm > summOfMaxArrayLine) summOfMaxArrayLine = rowSumm;
+            } 
+
+
+            for (int i = 0; i < array.Length; i++)
+            { 
+                if (summOfMaxArrayLine == array[i].Sum()) Console.WriteLine($"Index of higher element of array {i}");
+            }
+
+
+        }
+
+        static void Laba72()
+        {
+
+            int arraySize = ReadInt("X = Y size of array", "more than 9 and even", validatedVariable => validatedVariable < 9 || isEven(validatedVariable));
+
+            int[][] array = generateTwoDimensionalArray(arraySize, arraySize, 10, 99);
+
+            twoDimensionalArrayRepresent(array);
+
+            int medianIndex = arraySize / 2;
+
+            for(int i = 1; i < array.Length - 1; i++)
+            {
+                for (int j = 0; j < array[i].Length; j++)
+                {
+                    if(j < medianIndex - 1)
+                    {
+                        variableSwaiper<int>(ref array[i][j], ref array[arraySize - i - 1][arraySize - j - 1]); 
+                    }
+                }
+            }
+
+            twoDimensionalArrayRepresent(array);
+
+
+        }
+
+
 
         static void Main(string[] args)
         {
             do
             {
                 Laba6();
+                Laba71();
+                Laba72();
 
                 // bool toRepeat = CanRepeat(); *Not in context*
 
