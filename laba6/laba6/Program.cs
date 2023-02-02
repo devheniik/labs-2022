@@ -10,6 +10,7 @@ using File = System.IO.File;
 using System.Reflection.Metadata.Ecma335;
 using System.Diagnostics.Metrics;
 using System.Text;
+using System.Numerics;
 
 namespace Laba
 {
@@ -320,7 +321,7 @@ namespace Laba
             { 
                 string op = tokens[i];
                 double operand = double.Parse(tokens[i + 1]);
-                 
+                 //2+3
                 switch (op)
                 {
                     case "+":
@@ -628,6 +629,13 @@ namespace Laba
                 "Mikola Grigorovich Khvylyovy",
                 "Oles Terentyevich Gonchar"
             };
+            /*string[,] names = new string[biosList.Length, 3];*/
+            var bioList = new string[biosList.Length][];
+
+            for (int i = 0; i < biosList.Length; i++)
+            {
+                /*bioList[i][0] = */
+            }
 
             foreach (string bio in biosList)
             {
@@ -636,7 +644,7 @@ namespace Laba
                 string patronymic = splitedBio[1];
                 string surname = splitedBio[2];
 
-                string surnameIsLonest = "no";
+                string surnameIsLongest = "no";
                 int maxSurnameLength = -1;
                 foreach (string nestedBio in biosList)
                 {
@@ -645,7 +653,8 @@ namespace Laba
                     if (GetLettersCount(tempSurname) > maxSurnameLength) maxSurnameLength = tempSurname.Length;
                 }
 
-                if (surname.Length == maxSurnameLength) surnameIsLonest = "yes";
+                if (surname.Length == maxSurnameLength)
+                    surnameIsLongest = "yes";
 
 
 
@@ -654,7 +663,7 @@ namespace Laba
 
                 Console.WriteLine($"Name: {name}, name length: {GetLettersCount(name)}\n");
                 Console.WriteLine($"Patronymic: {patronymic}, patronymic first letter: {patronymic[0]}\n");
-                Console.WriteLine($"Surname: {surname}, surname is the longest?: {surnameIsLonest}\n");
+                Console.WriteLine($"Surname: {surname}, surname is the longest?: {surnameIsLongest}\n");
                  
 
             }
@@ -748,6 +757,7 @@ namespace Laba
                 int errors = 0;
                 string word = wordList[GetRand(0, 27)];
                 string hiddenWord = "";
+
                 bool nextRound = true;
 
                 char[] usedLetters = { }; 
@@ -820,10 +830,6 @@ namespace Laba
 
 
                     if (letterUsedInWord > letterUsedInHiddenWord) {
-
-
-                        
-
                         for(int i = 0; i < hiddenWord.Length; i++)
                         {
 
@@ -864,9 +870,6 @@ namespace Laba
                             letterUsedInWordAfter++;
                         }
                     }
-
-                    
-
                     for (int i = 0; i < hiddenWord.Length; i++)
                     {
                         if (hiddenWord[i] == letter)
@@ -915,14 +918,14 @@ namespace Laba
 
             do
             {
-                /*Laba6();
-                Laba71();
-                Laba72();
+                //Laba6();
+                //Laba71();
+                //Laba72();
 
-                Laba81();
-                Laba82();
-                Laba9();*/
-                Laba10();
+                //Laba81();
+                //Laba82();
+                //Laba9();
+                //Laba10();
 
                 // bool toRepeat = CanRepeat(); *Not in context*
 
